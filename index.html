@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Надіслати в Telegram</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Telegram Sender">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Натисніть кнопку</h1>
+        <button id="sendBtn">📩 Надіслати в Telegram</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        document.getElementById("sendBtn").addEventListener("click", function() {
+            const TOKEN = "7744528216:AAHWXmEnAmpcT4pW196ys8BpLmgT2dYOcGo";
+            const CHAT_ID = "1232032619";
+            const MESSAGE = "Я ХОЧУ ЧАЮЮ😢😢";
+            const URL = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(MESSAGE)}`;
+
+            fetch(URL)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("status").textContent = "✅ Повідомлення надіслано!";
+                })
+                .catch(error => {
+                    document.getElementById("status").textContent = "❌ Помилка!";
+                });
+        });
+    </script>
+</body>
+</html>
